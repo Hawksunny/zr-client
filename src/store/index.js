@@ -19,7 +19,11 @@ export default new Vuex.Store({
     //头像地址
     headImgUrl: '',
     //权限列表
-    authUrlsList: ''
+    authUrlsList: '',
+    //Order页面-包含订单列表的对象
+    order: {},
+    //Order页面-预定车型列表
+    carOptions: [],
   },
   //同步数据提交
   mutations: {
@@ -43,6 +47,12 @@ export default new Vuex.Store({
     },
     authUrlsList(state, param) {
       state.authUrlsList = param
+    },
+    order(state, param) {
+      state.order = param
+    },
+    carOptions(state, param) {
+      state.carOptions = param
     }
   },
   //引入持久化组件
