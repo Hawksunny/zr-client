@@ -6,6 +6,7 @@ import NoAuth from '@/components/NoAuth'
 import SysUser from '@/components/sys/User'
 import SysProfile from '@/components/sys/Profile'
 import ShopCity from '@/components/shop/City'
+import CarCar from '@/components/car/Car'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
 			path: '/ShopCity',
 			name: 'ShopCity',
 			component: ShopCity
+		},
+		{
+			path: '/CarCar',
+			name: 'CarCar',
+			component: CarCar
 		},
       ]
     }
