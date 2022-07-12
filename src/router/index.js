@@ -5,7 +5,8 @@ import Home from '@/components/Home'
 import NoAuth from '@/components/NoAuth'
 import SysUser from '@/components/sys/User'
 import SysProfile from '@/components/sys/Profile'
-import LeaseOrder from '@/components/lease/Order'
+import ShopCity from '@/components/shop/City'
+import CarCar from '@/components/car/Car'
 
 Vue.use(Router)
 
@@ -38,11 +39,16 @@ export default new Router({
           name: 'SysProfile',
           component: SysProfile
         },
-        {
-          path: '/LeaseOrder',
-          name: 'LeaseOrder',
-          component: LeaseOrder
-        }
+		{
+			path: '/ShopCity',
+			name: 'ShopCity',
+			component: ShopCity
+		},
+		{
+			path: '/CarCar',
+			name: 'CarCar',
+			component: CarCar
+		},
       ]
     }
   ]
