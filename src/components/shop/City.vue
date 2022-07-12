@@ -12,30 +12,53 @@
 		</el-form>
 		<!--数据列表-->
 		<el-table :data="tableData" border style="width: 100%">
-			<el-table-column prop="id" label="城市ID">
-			</el-table-column>
-			<el-table-column prop="provinceId" label="省份">
-				<template slot-scope="scope">
+			<el-table-column prop="provinceId" label="省份" width='150px'>
+				!<template slot-scope="scope">
 					<span v-if="scope.row.provinceId == 1">北京</span>
-					<span v-if="scope.row.provinceId == 14">吉林</span>
 					<span v-if="scope.row.provinceId == 2">安徽</span>
-					<span v-if="scope.row.provinceId == 17">辽宁</span>
 					<span v-if="scope.row.provinceId == 3">福建</span>
+					<span v-if="scope.row.provinceId == 4">甘肃</span>
+					<span v-if="scope.row.provinceId == 5">广东</span>
+					<span v-if="scope.row.provinceId == 6">广西</span>
+					<span v-if="scope.row.provinceId == 7">贵州</span>
+					<span v-if="scope.row.provinceId == 8">海南</span>
+					<span v-if="scope.row.provinceId == 9">河北</span>
+					<span v-if="scope.row.provinceId == 10">河南</span>
+					<span v-if="scope.row.provinceId == 11">黑龙江</span>
+					<span v-if="scope.row.provinceId == 12">湖北</span>
+					<span v-if="scope.row.provinceId == 13">湖南</span>
+					<span v-if="scope.row.provinceId == 14">吉林</span>
+					<span v-if="scope.row.provinceId == 15">江苏</span>
+					<span v-if="scope.row.provinceId == 16">江西</span>
+					<span v-if="scope.row.provinceId == 17">辽宁</span>
+					<span v-if="scope.row.provinceId == 18">内蒙古</span>
+					<span v-if="scope.row.provinceId == 19">宁夏</span>
+					<span v-if="scope.row.provinceId == 20">青海</span>
+					<span v-if="scope.row.provinceId == 21">山东</span>
+					<span v-if="scope.row.provinceId == 22">山西</span>
+					<span v-if="scope.row.provinceId == 23">陕西</span>
+					<span v-if="scope.row.provinceId == 24">上海</span>
+					<span v-if="scope.row.provinceId == 25">四川</span>
+					<span v-if="scope.row.provinceId == 26">天津</span>
+					<span v-if="scope.row.provinceId == 27">西藏</span>
+					<span v-if="scope.row.provinceId == 28">新疆</span>
+					<span v-if="scope.row.provinceId == 29">云南</span>
+					<span v-if="scope.row.provinceId == 30">浙江</span>
+					<span v-if="scope.row.provinceId == 31">重庆</span>
+					<span v-if="scope.row.provinceId == 32">香港</span>
+					<span v-if="scope.row.provinceId == 33">澳门</span>
+					<span v-if="scope.row.provinceId == 34">台湾</span>
 				</template>
 			</el-table-column>
-			<el-table-column prop="name" label="城市">
+			<el-table-column prop="name" label="城市" width='200px'>
 			</el-table-column>
 			<el-table-column prop="createId" label="新增人员">
 			</el-table-column>
 			<el-table-column prop="createTime" label="新增时间">
 			</el-table-column>
-			<el-table-column prop="modifyId" label="修改人员">
-			</el-table-column>
-			<el-table-column prop="modifyTime" label="修改时间">
-			</el-table-column>
-			<el-table-column fixed="right" label="操作">
+			<el-table-column fixed="right" label="操作" width='140px'>
 				<template slot-scope="scope">
-					<el-button size="mini" @click="openEdit(scope.row)">编辑</el-button>
+					<el-button size="mini" type="warning" @click="openEdit(scope.row)">编辑</el-button>
 					<el-popconfirm title="确认删除？" @confirm="del(scope.row)">
 						<el-button slot="reference" size="mini" type="danger">删除</el-button>
 					</el-popconfirm>
@@ -58,7 +81,7 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item label="城市" prop="name">
-					<el-input v-model="form.name"></el-input>
+					<el-input v-model="form.name" clearable></el-input>
 				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
@@ -91,7 +114,13 @@
 				//初始化表单对象
 				form: {},
 				//初始化校验对象
-				rules: {},
+				rules: {
+					name: [{
+						required: true,
+						message: '请输入城市名',
+						trigger: 'blur'
+					}]
+				},
 				//所有省份
 				provinceList: [],
 				//标识新增还是修改
@@ -108,10 +137,10 @@
 				}).then(res => {
 					if (res.data.success) {
 						this.tableData = res.data.obj.list;
+						this.total = res.data.obj.total;
 					} else {
 						this.$message.error(res.data.msg);
 					}
-					this.loading = false;
 				}).catch(err => {
 					console.info(err)
 				});
@@ -127,6 +156,10 @@
 				this.dialogType = 'add';
 				//获取所有省份数组
 				this.queryProvinceList();
+				//清除表单校验结果
+				this.$nextTick(function(){
+					this.$refs['form'].clearValidate();
+				})
 			},
 			openEdit(row) {
 				//设置对话框标题
@@ -141,6 +174,10 @@
 				this.queryProvinceList();
 				//对列表对象进行克隆，解决双向绑定问题
 				this.form = Object.assign({}, row);
+				//清除表单校验结果
+				this.$nextTick(function(){
+					this.$refs['form'].clearValidate();
+				})
 
 				this.form.createTime = '';
 				this.form.modifyTime = '';
@@ -150,33 +187,37 @@
 				console.info(row);
 			},
 			submitForm() {
-				if (this.dialogType == 'add') {
-					this.$axios({
-						method: 'post',
-						url: "api/shop/city/add",
-						data: this.form
-					}).then(res => {
-						//关闭对话框
-						this.show = false;
-						//刷新页面
-						this.query()
-					}).catch(err => {
-						console.info(err)
-					});
-				} else {
-					this.$axios({
-						method: 'post',
-						url: "api/shop/city/edit",
-						data: this.form
-					}).then(res => {
-						//关闭对话框
-						this.show = false;
-						//刷新页面
-						this.query()
-					}).catch(err => {
-						console.info(err)
-					});
-				}
+				this.$refs['form'].validate((valid) => {
+					if (valid) {
+						if (this.dialogType == 'add') {
+							this.$axios({
+								method: 'post',
+								url: "api/shop/city/add",
+								data: this.form
+							}).then(res => {
+								//关闭对话框
+								this.show = false;
+								//刷新页面
+								this.query()
+							}).catch(err => {
+								console.info(err)
+							});
+						} else {
+							this.$axios({
+								method: 'post',
+								url: "api/shop/city/edit",
+								data: this.form
+							}).then(res => {
+								//关闭对话框
+								this.show = false;
+								//刷新页面
+								this.query()
+							}).catch(err => {
+								console.info(err)
+							});
+						}
+					}
+				})
 			},
 			del(row) {
 				this.$axios({
