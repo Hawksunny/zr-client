@@ -7,6 +7,7 @@ import SysUser from '@/components/sys/User'
 import SysProfile from '@/components/sys/Profile'
 import ShopCity from '@/components/shop/City'
 import CarCar from '@/components/car/Car'
+import LeaseOrder from '@/components/lease/Order'
 
 Vue.use(Router)
 
@@ -39,16 +40,21 @@ export default new Router({
           name: 'SysProfile',
           component: SysProfile
         },
-		{
-			path: '/ShopCity',
-			name: 'ShopCity',
-			component: ShopCity
-		},
-		{
-			path: '/CarCar',
-			name: 'CarCar',
-			component: CarCar
-		},
+        {
+          path: '/ShopCity',
+          name: 'ShopCity',
+          component: ShopCity
+        },
+        {
+          path: '/CarCar',
+          name: 'CarCar',
+          component: CarCar
+        },
+        {
+          path: '/LeaseOrder',
+          name: 'LeaseOrder',
+          component: LeaseOrder
+        }
       ]
     }
   ]

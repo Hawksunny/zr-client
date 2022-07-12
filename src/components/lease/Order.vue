@@ -110,7 +110,7 @@
         form: {
           carId: '',
           pageNum: 1,
-          pageSize: 6,
+          pageSize: 10,
         },
         // 预定车型选项
         options: this.$store.state.carOptions,
@@ -160,8 +160,9 @@
     created() {
       this.query()
       this.$axios({
-        method: 'get',
+        method: 'post',
         url: 'api/car/car/list',
+        data: {},
       }).then(res => {
         if (res.data.success) {
           res.data.obj.unshift({
