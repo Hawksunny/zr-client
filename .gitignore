@@ -12,4 +12,7 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-src/assets/bg04.jpg
+
+# My configration
+package.json
+package-lock.json
