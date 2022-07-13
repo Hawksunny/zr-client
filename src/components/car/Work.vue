@@ -206,6 +206,14 @@
       </div>
     </el-dialog>
 
+    <!-- 整备弹窗 -->
+    <el-dialog title="信息" :visible.sync="zhengBeiVisible" :append-to-body="true" width="30%" :center="true">
+      <div>确认要整备吗?</div>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="zhengBeiClose()">确 定</el-button>
+        <el-button type="primary" @click="zhengBeiVisible = false">取消</el-button>
+      </div>
+    </el-dialog>
 
   </div>
 </template>
@@ -357,8 +365,9 @@
         this.huiCheVisible = true
       },
 
-      showZhengBei() {
-        return null
+      showZhengBei(row) {
+        this.zhengReturnData.id = row.id
+        this.zhengBeiVisible = true
       },
 
       chuCheClose() {
@@ -395,7 +404,24 @@
           console.log(err)
           this.huiCheVisible = false
         })
-      }
+      },
+
+      zhengBeiClose() {
+        this.zhengReturnData.status = "已整备"
+        this.zhengReturnData.outFitTime = this.$moment().format("YYYY-MM-DD HH:mm:ss")
+        this.zhengReturnData.outFitUserId = this.$store.state.loginUserId
+        this.$axios({
+          method: 'post',
+          url: 'api/car/work/update',
+          data: this.zhengReturnData
+        }).then(res => {
+          this.query()
+          this.zhengBeiVisible = false
+        }).catch(err => {
+          console.log(err)
+          this.zhengBeiVisible = false
+        })
+      },
     },
 
     created() {
