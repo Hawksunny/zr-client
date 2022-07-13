@@ -24,11 +24,7 @@
     <!-- 记录表 -->
     <el-table :data="tableData" style="width: 100%" height="450" stripe border
       :header-cell-style="{background:'#f7f7f7',color:'#666666'}">
-      <el-table-column fixed="left" prop="orderId" label="订单编号" width="100">
-        <template slot-scope="scope">
-          <el-button type="text" size="small" v-text="scope.row.orderId"></el-button>
-        </template>
-      </el-table-column>
+      <el-table-column fixed="left" prop="orderId" label="订单编号" width="100" />
       <el-table-column prop="customerId" label="客户账号" width="180" />
       <el-table-column prop="customerName" label="客户姓名" width="180" />
       <el-table-column prop="carName" label="预定车型" width="180" />

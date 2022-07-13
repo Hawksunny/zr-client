@@ -10,6 +10,8 @@ export default new Vuex.Store({
     token: '',
     //当前登录用户名
     loginUserName: '',
+    //当前登录用户账号
+    loginUserId: '',
     //激活的菜单
     menuIndex: '',
     //一级菜单
@@ -32,6 +34,9 @@ export default new Vuex.Store({
     },
     loginUserName(state, param) {
       state.loginUserName = param
+    },
+    loginUserId(state, param) {
+      state.loginUserId = param
     },
     menuIndex(state, param) {
       state.menuIndex = param

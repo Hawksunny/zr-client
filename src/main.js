@@ -7,10 +7,13 @@ import axios from 'axios'
 import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import moment from 'moment'
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+//获取当前时间组件
+Vue.prototype.$moment = moment
 
 //设置全局请求拦截器
 axios.interceptors.request.use(
@@ -62,6 +65,8 @@ router.beforeEach((to, from, next) => {
     }
   }
 });
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -8,6 +8,7 @@ import SysProfile from '@/components/sys/Profile'
 import ShopCity from '@/components/shop/City'
 import CarCar from '@/components/car/Car'
 import LeaseOrder from '@/components/lease/Order'
+import CarWork from '@/components/car/Work'
 
 Vue.use(Router)
 
@@ -51,10 +52,15 @@ export default new Router({
           component: CarCar
         },
         {
+          path: '/CarWork',
+          name: 'CarWork',
+          component: CarWork
+        },
+        {
           path: '/LeaseOrder',
           name: 'LeaseOrder',
           component: LeaseOrder
-        }
+        },
       ]
     }
   ]
