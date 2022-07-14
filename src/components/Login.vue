@@ -56,6 +56,7 @@
               if (res.data.success) {
                 this.$store.commit('token', res.data.msg)
                 this.$store.commit('loginUserName', res.data.obj.loginUserName)
+                this.$store.commit('loginUserId', res.data.obj.loginUserId)
                 this.$store.commit('authUrlsList', res.data.obj.authUrlsList)
                 this.$store.commit('headImgUrl', res.data.obj.base64)
                 this.$router.push('Home')
