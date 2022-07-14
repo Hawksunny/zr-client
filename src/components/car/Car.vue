@@ -2,8 +2,8 @@
 	<div>
 		<!--查询条件-->
 		<el-form :inline="true" :model="queryForm" style="text-align: left;">
-			<el-form-item label="城市名称">
-				<el-input v-model="queryForm.name" placeholder="请输入城市名称"></el-input>
+			<el-form-item>
+				<el-input v-model="queryForm.name" placeholder="车辆名称"></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button type="primary" @click="query">查询</el-button>
@@ -12,52 +12,35 @@
 		</el-form>
 		<!--数据列表-->
 		<el-table :data="tableData" border style="width: 100%">
-			<el-table-column prop="provinceId" label="省份" width='150px'>
-				!<template slot-scope="scope">
-					<span v-if="scope.row.provinceId == 1">北京</span>
-					<span v-if="scope.row.provinceId == 2">安徽</span>
-					<span v-if="scope.row.provinceId == 3">福建</span>
-					<span v-if="scope.row.provinceId == 4">甘肃</span>
-					<span v-if="scope.row.provinceId == 5">广东</span>
-					<span v-if="scope.row.provinceId == 6">广西</span>
-					<span v-if="scope.row.provinceId == 7">贵州</span>
-					<span v-if="scope.row.provinceId == 8">海南</span>
-					<span v-if="scope.row.provinceId == 9">河北</span>
-					<span v-if="scope.row.provinceId == 10">河南</span>
-					<span v-if="scope.row.provinceId == 11">黑龙江</span>
-					<span v-if="scope.row.provinceId == 12">湖北</span>
-					<span v-if="scope.row.provinceId == 13">湖南</span>
-					<span v-if="scope.row.provinceId == 14">吉林</span>
-					<span v-if="scope.row.provinceId == 15">江苏</span>
-					<span v-if="scope.row.provinceId == 16">江西</span>
-					<span v-if="scope.row.provinceId == 17">辽宁</span>
-					<span v-if="scope.row.provinceId == 18">内蒙古</span>
-					<span v-if="scope.row.provinceId == 19">宁夏</span>
-					<span v-if="scope.row.provinceId == 20">青海</span>
-					<span v-if="scope.row.provinceId == 21">山东</span>
-					<span v-if="scope.row.provinceId == 22">山西</span>
-					<span v-if="scope.row.provinceId == 23">陕西</span>
-					<span v-if="scope.row.provinceId == 24">上海</span>
-					<span v-if="scope.row.provinceId == 25">四川</span>
-					<span v-if="scope.row.provinceId == 26">天津</span>
-					<span v-if="scope.row.provinceId == 27">西藏</span>
-					<span v-if="scope.row.provinceId == 28">新疆</span>
-					<span v-if="scope.row.provinceId == 29">云南</span>
-					<span v-if="scope.row.provinceId == 30">浙江</span>
-					<span v-if="scope.row.provinceId == 31">重庆</span>
-					<span v-if="scope.row.provinceId == 32">香港</span>
-					<span v-if="scope.row.provinceId == 33">澳门</span>
-					<span v-if="scope.row.provinceId == 34">台湾</span>
-				</template>
+			<el-table-column prop="name" label="名称" width="100px">
 			</el-table-column>
-			<el-table-column prop="name" label="城市" width='200px'>
+			<el-table-column prop="brand" label="品牌" width="80px">
+			</el-table-column>
+			<el-table-column prop="model" label="型号" width="100px">
+			</el-table-column>
+			<el-table-column prop="box" label="箱数" width="50px">
+			</el-table-column>
+			<el-table-column prop="volume" label="排量" width="50px">
+			</el-table-column>
+			<el-table-column prop="door" label="门数" width="50px">
+			</el-table-column>
+			<el-table-column prop="seat" label="座数" width="50px">
+			</el-table-column>
+			<el-table-column prop="gears" label="档位" width="50px">
+			</el-table-column>
+			<el-table-column prop="auto" label="档位类型" width="80px">
+			</el-table-column>
+			<el-table-column prop="price" label="价格(元/天)" width="100px">
+			</el-table-column>
+			<el-table-column prop="status" label="状态" width="50px">
 			</el-table-column>
 			<el-table-column prop="createId" label="新增人员">
 			</el-table-column>
-			<el-table-column prop="createTime" label="新增时间">
+			<el-table-column prop="createTime" label="新增时间" width="160px">
 			</el-table-column>
-			<el-table-column fixed="right" label="操作" width='140px'>
+			<el-table-column fixed="right" label="操作" width="208px">
 				<template slot-scope="scope">
+					<el-button size="mini" type="primary">图片</el-button>
 					<el-button size="mini" type="warning" @click="openEdit(scope.row)">编辑</el-button>
 					<el-popconfirm title="确认删除？" @confirm="del(scope.row)">
 						<el-button slot="reference" size="mini" type="danger">删除</el-button>
@@ -73,15 +56,46 @@
 		<!--新增/编辑页面-->
 		<el-dialog :title="title" :visible.sync="show" width="500px">
 			<el-input type="hidden" :name="dialogType"></el-input>
-			<el-form :model="form" :rules="rules" ref="form" label-width="60px">
-				<el-form-item label="省份" prop="provinceId">
-					<el-select v-model="form.provinceId" placeholder="请选择" @change="$forceUpdate()">
-						<el-option v-for="item in provinceList" :key="item.id" :label="item.name" :value="item.id">
-						</el-option>
+			<el-form :model="form" :rules="rules" ref="form" label-width="100px">
+				<el-form-item label="名称" prop="name">
+					<el-input v-model="form.name" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="品牌" prop="brand">
+					<el-input v-model="form.brand" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="型号" prop="model">
+					<el-input v-model="form.model" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="箱数" prop="box">
+					<el-input v-model="form.box" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="排量" prop="volume">
+					<el-input v-model="form.volume" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="门数" prop="door">
+					<el-input v-model="form.door" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="座数" prop="seat">
+					<el-input v-model="form.seat" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="挡位" prop="gears">
+					<el-input v-model="form.gears" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="挡位类型" prop="auto">
+					<el-select v-model="form.auto" placeholder="请选择挡位类型">
+						<el-option label="手动" value="手动"></el-option>
+						<el-option label="一体" value="一体"></el-option>
+						<el-option label="自动" value="自动"></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item label="城市" prop="name">
-					<el-input v-model="form.name" clearable></el-input>
+				<el-form-item label="价格(元/天)" prop="price">
+					<el-input v-model="form.price" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="状态" prop="status">
+					<el-select v-model="form.status" placeholder="请选择状态">
+						<el-option label="正常" value="正常"></el-option>
+						<el-option label="下架" value="下架"></el-option>
+					</el-select>
 				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
@@ -94,16 +108,16 @@
 
 <script>
 	export default {
-		name: 'City',
+		name: 'Car',
 		data() {
 			return {
 				//查询条件对象
 				queryForm: {
-					cityName: '',
+					name: '',
 					pageNum: 1,
 					pageSize: 10
 				},
-				//数据表格对象
+				//数据表格数组
 				tableData: [],
 				//一共多少条数据
 				total: 0,
@@ -117,17 +131,35 @@
 				rules: {
 					name: [{
 						required: true,
-						message: '请输入城市名',
+						message: '请输入车名',
 						trigger: 'blur'
 					}],
-					provinceId: [{
+					brand: [{
 						required: true,
-						message: '请选择省份',
-						trigger: 'change'
+						message: '请输入品牌',
+						trigger: 'blur'
+					}],
+					model: [{
+						required: true,
+						message: '请输入型号',
+						trigger: 'blur'
+					}],
+					auto: [{
+						required: true,
+						message: '请选择挡位类型',
+						trigger: 'blur'
+					}],
+					price: [{
+						required: true,
+						message: '请输入价格',
+						trigger: 'blur'
+					}],
+					status: [{
+						required: true,
+						message: '请选择状态',
+						trigger: 'blur'
 					}],
 				},
-				//所有省份
-				provinceList: [],
 				//标识新增还是修改
 				dialogType: 'add',
 			}
@@ -137,11 +169,11 @@
 			query() {
 				this.$axios({
 					method: 'post',
-					url: 'api/shop/city/list',
+					url: 'api/car/car/list',
 					data: this.queryForm
 				}).then(res => {
 					if (res.data.success) {
-						this.tableData = res.data.obj.list;
+						this.tableData = res.data.obj;
 						this.total = res.data.obj.total;
 					} else {
 						this.$message.error(res.data.msg);
@@ -152,42 +184,37 @@
 			},
 			openAdd() {
 				//设置对话框标题
-				this.title = "新增";
+				this.title = "车辆新增";
 				//清空表单
 				this.form = {};
 				//打开对话框
 				this.show = true;
 				//更改标识为新增
 				this.dialogType = 'add';
-				//获取所有省份数组
-				this.queryProvinceList();
 				//清除表单校验结果
-				this.$nextTick(function() {
+				this.$nextTick(function(){
 					this.$refs['form'].clearValidate();
 				})
 			},
 			openEdit(row) {
 				//设置对话框标题
-				this.title = "编辑";
+				this.title = "编辑车辆";
 				//清空表单
 				this.form = {};
 				//打开对话框
 				this.show = true;
 				//更改标识为新增
 				this.dialogType = 'edit';
-				//获取所有省份数组
-				this.queryProvinceList();
 				//对列表对象进行克隆，解决双向绑定问题
 				this.form = Object.assign({}, row);
 				//清除表单校验结果
-				this.$nextTick(function() {
+				this.$nextTick(function(){
 					this.$refs['form'].clearValidate();
 				})
 
 				this.form.createTime = '';
 				this.form.modifyTime = '';
 			},
-			//更改状态
 			change(row) {
 				console.info(row);
 			},
@@ -197,7 +224,7 @@
 						if (this.dialogType == 'add') {
 							this.$axios({
 								method: 'post',
-								url: "api/shop/city/add",
+								url: "api/car/car/add",
 								data: this.form
 							}).then(res => {
 								//关闭对话框
@@ -210,7 +237,7 @@
 						} else {
 							this.$axios({
 								method: 'post',
-								url: "api/shop/city/edit",
+								url: "api/car/car/edit",
 								data: this.form
 							}).then(res => {
 								//关闭对话框
@@ -222,12 +249,12 @@
 							});
 						}
 					}
-				})
+				});
 			},
 			del(row) {
 				this.$axios({
 					method: 'get',
-					url: "api/shop/city/del/" + row.id
+					url: "api/car/car/del/" + row.id
 				}).then(res => {
 					//刷新页面
 					this.query()
@@ -235,26 +262,13 @@
 					console.info(err)
 				});
 			},
-			queryProvinceList() {
-				this.$axios({
-					method: 'post',
-					url: "api/shop/province/selectList"
-				}).then(res => {
-					this.provinceList = res.data.obj;
-				}).catch(err => {
-					console.info(err)
-				});
-			},
-			created() {
-				//初始化页面时进行页面查询
-				this.query();
-			},
 		},
+		created() {
+			//初始化页面时进行页面查询
+			this.query();
+		}
 	}
 </script>
 
 <style>
-	.el-select {
-		width: 100%;
-	}
 </style>
