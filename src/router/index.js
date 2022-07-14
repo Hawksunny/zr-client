@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import NoAuth from '@/components/NoAuth'
 import SysUser from '@/components/sys/User'
 import SysProfile from '@/components/sys/Profile'
+import ShopShop from '@/components/shop/Shop'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
           path: '/SysProfile',
           name: 'SysProfile',
           component: SysProfile
+        },
+        {
+          path: '/ShopShop',
+          name: 'ShopShop',
+          component: ShopShop
         }
       ]
     }
