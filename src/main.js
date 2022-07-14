@@ -7,16 +7,10 @@ import axios from 'axios'
 import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-<<<<<<< HEAD
 // 引入echarts
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
-
-
-
-=======
 import moment from 'moment'
->>>>>>> 95c8c802e0fe8e59be89a13ccdd48c71b2bc9469
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
