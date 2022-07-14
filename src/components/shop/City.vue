@@ -74,7 +74,7 @@
 		<el-dialog :title="title" :visible.sync="show" width="500px">
 			<el-input type="hidden" :name="dialogType"></el-input>
 			<el-form :model="form" :rules="rules" ref="form" label-width="60px">
-				<el-form-item label="省份">
+				<el-form-item label="省份" prop="provinceId">
 					<el-select v-model="form.provinceId" placeholder="请选择" @change="$forceUpdate()">
 						<el-option v-for="item in provinceList" :key="item.id" :label="item.name" :value="item.id">
 						</el-option>
@@ -119,7 +119,12 @@
 						required: true,
 						message: '请输入城市名',
 						trigger: 'blur'
-					}]
+					}],
+					provinceId: [{
+						required: true,
+						message: '请选择省份',
+						trigger: 'change'
+					}],
 				},
 				//所有省份
 				provinceList: [],
@@ -157,7 +162,7 @@
 				//获取所有省份数组
 				this.queryProvinceList();
 				//清除表单校验结果
-				this.$nextTick(function(){
+				this.$nextTick(function() {
 					this.$refs['form'].clearValidate();
 				})
 			},
@@ -175,7 +180,7 @@
 				//对列表对象进行克隆，解决双向绑定问题
 				this.form = Object.assign({}, row);
 				//清除表单校验结果
-				this.$nextTick(function(){
+				this.$nextTick(function() {
 					this.$refs['form'].clearValidate();
 				})
 
