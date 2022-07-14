@@ -22,17 +22,16 @@ export default new Vuex.Store({
     headImgUrl: '',
     //权限列表
     authUrlsList: '',
-<<<<<<< HEAD
-    
+
     carNumCountList: [],
-    
-    simpleOrderList: []
-=======
+
+    simpleOrderList: [],
+
     //Order页面-包含订单列表的对象
     order: {},
     //Order页面-预定车型列表
     carOptions: [],
->>>>>>> 95c8c802e0fe8e59be89a13ccdd48c71b2bc9469
+
   },
   //同步数据提交
   mutations: {
@@ -60,21 +59,20 @@ export default new Vuex.Store({
     authUrlsList(state, param) {
       state.authUrlsList = param
     },
-<<<<<<< HEAD
-    carNumCountList(state,param){
+
+    carNumCountList(state, param) {
       state.carNumCountList = param
     },
-    simpleOrderList(state,param){
+    simpleOrderList(state, param) {
       state.simpleOrderList = param
-=======
+    },
     order(state, param) {
       state.order = param
     },
     carOptions(state, param) {
       state.carOptions = param
->>>>>>> 95c8c802e0fe8e59be89a13ccdd48c71b2bc9469
     }
-    
+
   },
   //引入持久化组件
   plugins: [createPersistedState()]
