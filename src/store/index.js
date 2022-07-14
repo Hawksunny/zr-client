@@ -19,7 +19,11 @@ export default new Vuex.Store({
     //头像地址
     headImgUrl: '',
     //权限列表
-    authUrlsList: ''
+    authUrlsList: '',
+    
+    carNumCountList: [],
+    
+    simpleOrderList: []
   },
   //同步数据提交
   mutations: {
@@ -43,7 +47,14 @@ export default new Vuex.Store({
     },
     authUrlsList(state, param) {
       state.authUrlsList = param
+    },
+    carNumCountList(state,param){
+      state.carNumCountList = param
+    },
+    simpleOrderList(state,param){
+      state.simpleOrderList = param
     }
+    
   },
   //引入持久化组件
   plugins: [createPersistedState()]

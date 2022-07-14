@@ -5,6 +5,8 @@ import Home from '@/components/Home'
 import NoAuth from '@/components/NoAuth'
 import SysUser from '@/components/sys/User'
 import SysProfile from '@/components/sys/Profile'
+import ReportCar from '@/components/rep/ReportCar'
+import ReportMoney from '@/components/rep/ReportMoney'
 
 Vue.use(Router)
 
@@ -36,6 +38,16 @@ export default new Router({
           path: '/SysProfile',
           name: 'SysProfile',
           component: SysProfile
+        },
+        {
+          path: '/ReportCar',
+          name: 'ReportCar',
+          component: ReportCar
+        },
+        {
+          path: '/ReportMoney',
+          name: 'ReportMoney',
+          component: ReportMoney
         }
       ]
     }

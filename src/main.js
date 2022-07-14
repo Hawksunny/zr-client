@@ -7,10 +7,17 @@ import axios from 'axios'
 import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+// 引入echarts
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
+
+
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+
 
 //设置全局请求拦截器
 axios.interceptors.request.use(
