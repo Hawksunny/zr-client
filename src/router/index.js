@@ -9,14 +9,11 @@ import SysProfile from '@/components/sys/Profile'
 import ReportCar from '@/components/rep/ReportCar'
 import ReportMoney from '@/components/rep/ReportMoney'
 import ShopCity from '@/components/shop/City'
-<<<<<<< HEAD
 import LeaseCustomer from '@/components/lease/Customer'
 import LeaseAgreement from '@/components/lease/Agreement'
-=======
 import CarCar from '@/components/car/Car'
 import LeaseOrder from '@/components/lease/Order'
 import CarWork from '@/components/car/Work'
->>>>>>> 8184c2c0dc68ef2e562e7de1829325b58859cf06
 
 Vue.use(Router)
 
@@ -55,8 +52,6 @@ export default new Router({
           component: SysProfile
         },
         {
-<<<<<<< HEAD
-=======
           path: '/ReportCar',
           name: 'ReportCar',
           component: ReportCar
@@ -67,13 +62,11 @@ export default new Router({
           component: ReportMoney
         },
         {
->>>>>>> 8184c2c0dc68ef2e562e7de1829325b58859cf06
           path: '/ShopCity',
           name: 'ShopCity',
           component: ShopCity
         },
         {
-<<<<<<< HEAD
           path: '/LeaseCustomer',
           name: 'LeaseCustomer',
           component: LeaseCustomer
@@ -82,8 +75,8 @@ export default new Router({
           path: '/LeaseAgreement',
           name: 'LeaseAgreement',
           component: LeaseAgreement
-        }
-=======
+        },
+        {
           path: '/CarCar',
           name: 'CarCar',
           component: CarCar
@@ -98,7 +91,6 @@ export default new Router({
           name: 'LeaseOrder',
           component: LeaseOrder
         },
->>>>>>> 8184c2c0dc68ef2e562e7de1829325b58859cf06
       ]
     }
   ]
