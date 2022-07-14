@@ -10,6 +10,8 @@ export default new Vuex.Store({
     token: '',
     //当前登录用户名
     loginUserName: '',
+    //当前登录用户账号
+    loginUserId: '',
     //激活的菜单
     menuIndex: '',
     //一级菜单
@@ -20,10 +22,17 @@ export default new Vuex.Store({
     headImgUrl: '',
     //权限列表
     authUrlsList: '',
+<<<<<<< HEAD
     
     carNumCountList: [],
     
     simpleOrderList: []
+=======
+    //Order页面-包含订单列表的对象
+    order: {},
+    //Order页面-预定车型列表
+    carOptions: [],
+>>>>>>> 95c8c802e0fe8e59be89a13ccdd48c71b2bc9469
   },
   //同步数据提交
   mutations: {
@@ -32,6 +41,9 @@ export default new Vuex.Store({
     },
     loginUserName(state, param) {
       state.loginUserName = param
+    },
+    loginUserId(state, param) {
+      state.loginUserId = param
     },
     menuIndex(state, param) {
       state.menuIndex = param
@@ -48,11 +60,19 @@ export default new Vuex.Store({
     authUrlsList(state, param) {
       state.authUrlsList = param
     },
+<<<<<<< HEAD
     carNumCountList(state,param){
       state.carNumCountList = param
     },
     simpleOrderList(state,param){
       state.simpleOrderList = param
+=======
+    order(state, param) {
+      state.order = param
+    },
+    carOptions(state, param) {
+      state.carOptions = param
+>>>>>>> 95c8c802e0fe8e59be89a13ccdd48c71b2bc9469
     }
     
   },
