@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import NoAuth from '@/components/NoAuth'
 import SysUser from '@/components/sys/User'
+import SysRole from '@/components/sys/Role'
 import SysProfile from '@/components/sys/Profile'
 import ShopCity from '@/components/shop/City'
 
@@ -32,6 +33,11 @@ export default new Router({
           path: '/SysUser',
           name: 'SysUser',
           component: SysUser
+        },
+        {
+          path: '/SysRole',
+          name: 'SysRole',
+          component: SysRole
         },
         {
           path: '/SysProfile',
